@@ -42,7 +42,7 @@
         </li>        
         <li><a href="#services">TEAMS</a></li>
         <li><a href="#portfolio">PORTFOLIO</a></li>
-        <li><a href="#pricing">PM DEMO</a></li>
+        <li><a href="#pricing">ECBR DATA</a></li>
         <li><a href="#contact">CONTACT</a></li>
       </ul>
     </div>
@@ -59,8 +59,10 @@
        <form name="submit-to-google-sheet">
           <div class="input-group">
             <input type="email" name="Email" class="form-control" size="50" placeholder="Email Address" required>
+            <input class="form-control" id="Ereg" name="Dates" type="hidden">
+            <input class="form-control" id="Eregtime" name="Timestamps" type="hidden">
             <div class="input-group-btn">
-              <button type="submit" class="btn btn-danger"> 
+              <button type="submit" class="btn btn-danger" onclick="generateEDate();"> 
               <span class="glyphicon glyphicon-envelope"></span>&nbsp;Subscribe</button>
             </div>
           </div>
@@ -562,7 +564,7 @@
     <div class="col-sm-8">
       <h2>Data View</h2>
       <br />
-      <iframe src="https://script.google.com/macros/s/AKfycbzQ2cHw9LL4huXKUvAhRsxh-UumpJXkPy4r5dJZP5lg2CX6gqq_Bd5ETxgQnxp8YlXL/exec"
+      <iframe src="https://script.google.com/macros/s/AKfycbzyrzqr2nmZBpuGaB8L0H4aEigl6_THz_kgWReBSWwmipD2Q2GUVEsOcITcwlYw3mQ/exec"
         style="width: 110%; height: 600px; "> </iframe>
     </div>
     </div>
@@ -583,7 +585,7 @@
       <form name="contact-to-google-sheet">
       <div class="row">
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="Name" placeholder="Name" type="text" required>
+          <input class="form-control" id="name" name="Names" placeholder="Names" type="text" required>
         </div>
         <div class="col-sm-6 form-group">
           <input class="form-control" id="email" name="Email" placeholder="Email" type="email" required>
@@ -600,11 +602,14 @@
             <option>NT</option>
             <option>CT</option>
           </select>
-          <button class="btn btn-default pull-right" type="submit">Send</button>
+          <input class="form-control" id="reg" name="Date" type="hidden">
+          <input class="form-control" id="regtime" name="Timestamp" type="hidden">
+          </div>
+          <button class="btn btn-default pull-right" type="submit" onclick="generateDate();">Send</button>
         </div>
       </div>
       </form>
-      <a href="https://docs.google.com/spreadsheets/d/1FdGXBWErc3bKPVSZDsMfwpi9f3esHxsCvx8uaES-mbI/edit?usp=sharing" target="_blank">
+      <a href="https://docs.google.com/spreadsheets/d/1IM-oHo7q3Q1sT0cYdsI9XTGqjtIoQ1eII_5BmUrO6zc/edit?usp=sharing" target="_blank">
         <button class="btn btn-default pull-right"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;Check Register</button></a>
     </div>
   </div>
@@ -625,11 +630,11 @@
 <!-- Load external JavaScript -->
 <script src="scripts.js"></script>
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwVj1KZd5m11tqEEtkHu-DH2VdtEBepuSqi32vHzLLDSVQ6Sipi8YUIMP1p41NTwO3L/exec'
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxxZZlWRmSJSj7L67ZJWmWSi9yijXYlH0biReeGOj4keu8xHaXpkrOTeOIo0bJtU3w/exec'
   const form = document.forms['submit-to-google-sheet']
   const msg = document.getElementById("msg")  
 
-  const scriptURL2='https://script.google.com/macros/s/AKfycbzPOt5m3qVPkHD06Kygun85eDj4MGI5mgPcFwywRYAJFgn0Nh5PgsO8OP1S8OYVdxHA/exec'
+  const scriptURL2='https://script.google.com/macros/s/AKfycbycXh4BTmblhN_mADdITC85N_nl23qAuGbbqJnm8sv6FVQ58ynZ8KH_CjkTRw-cFw/exec'
   const form2 = document.forms['contact-to-google-sheet']
   const msg2 = document.getElementById("msg2")
 
@@ -657,5 +662,22 @@
       })
       .catch(error => console.error('Error!', error.message))
   })
+  function generateDate(){
+    let today = new Date().toLocaleDateString('en-AU')
+    let subtime = new Date().toLocaleTimeString('en-AU')
+    console.log('Date has been loaded ' + today);
+    document.getElementById("reg").value = today;  
+    document.getElementById("regtime").value = subtime;
+    return true;
+  }
+  function generateEDate(){
+    let today = new Date().toLocaleDateString('en-AU')
+    let subtime = new Date().toLocaleTimeString('en-AU')
+    console.log('E Regeste Time: ' + subtime);
+    console.log('E Regeste Date: ' + today);
+    document.getElementById("Ereg").value = today;  
+    document.getElementById("Eregtime").value = subtime;  
+    return true;
+  }
 </script>
 </html>
